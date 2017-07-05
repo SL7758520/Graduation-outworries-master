@@ -1,0 +1,132 @@
+@font-face {
+  font-family: 'icomoon';
+  src:url(../fonts/icomoon.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon_"], [class*=" icon_"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon_app_37:before {
+  content: "\e924";
+}
+.icon_app_01:before {
+  content: "\e900";
+}
+.icon_app_02:before {
+  content: "\e901";
+}
+.icon_app_03:before {
+  content: "\e902";
+}
+.icon_app_04:before {
+  content: "\e903";
+}
+.icon_app_05:before {
+  content: "\e904";
+}
+.icon_app_06:before {
+  content: "\e905";
+}
+.icon_app_07:before {
+  content: "\e906";
+}
+.icon_app_08:before {
+  content: "\e907";
+}
+.icon_app_09:before {
+  content: "\e908";
+}
+.icon_app_10:before {
+  content: "\e909";
+}
+.icon_app_11:before {
+  content: "\e90a";
+}
+.icon_app_12:before {
+  content: "\e90b";
+}
+.icon_app_13:before {
+  content: "\e90c";
+}
+.icon_app_14:before {
+  content: "\e90d";
+}
+.icon_app_15:before {
+  content: "\e90e";
+}
+.icon_app_16:before {
+  content: "\e90f";
+}
+.icon_app_17:before {
+  content: "\e910";
+}
+.icon_app_18:before {
+  content: "\e911";
+}
+.icon_app_19:before {
+  content: "\e912";
+}
+.icon_app_20:before {
+  content: "\e913";
+}
+.icon_app_21:before {
+  content: "\e914";
+}
+.icon_app_22:before {
+  content: "\e915";
+}
+.icon_app_23:before {
+  content: "\e916";
+}
+.icon_app_24:before {
+  content: "\e917";
+}
+.icon_app_25:before {
+  content: "\e918";
+}
+.icon_app_26:before {
+  content: "\e919";
+}
+.icon_app_27:before {
+  content: "\e91a";
+}
+.icon_app_28:before {
+  content: "\e91b";
+}
+.icon_app_29:before {
+  content: "\e91c";
+}
+.icon_app_30:before {
+  content: "\e91d";
+}
+.icon_app_31:before {
+  content: "\e91e";
+}
+.icon_app_32:before {
+  content: "\e91f";
+}
+.icon_app_33:before {
+  content: "\e920";
+}
+.icon_app_34:before {
+  content: "\e921";
+}
+.icon_app_35:before {
+  content: "\e922";
+}
+.icon_app_36:before {
+  content: "\e923";
+}
