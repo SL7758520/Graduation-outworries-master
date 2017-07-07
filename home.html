@@ -69,6 +69,14 @@
 				/*-webkit-transform: rotate(180deg) translateZ(0);*/
 			}
 			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+				display: inline-block;
+				width: auto;
+				padding: 0 8px;
+				border: 0;
+				
+			}
+			
 			.mui-pull-bottom-tips {
 				text-align: center;
 				background-color: #efeff4;
@@ -90,9 +98,28 @@
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
-			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item.mui-active{
+				font-size: 17px;
+				color: #222222;
+			}
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
+			}
+			.item-display{
+				padding: 0 10px;
+				width: 30px;
+				z-index: 1;
+				position: relative;
+				display: block;
+				min-height: 1px;
+				background-color: #007aff;
+			}
+			#sliderSegmentedControl{
+				background-color: #b8b2b2;
+			}
+			.btn-right{
+				height: 40px;
+				background-color:#b8b2b2 ;
 			}
 		</style>
 	</head>
@@ -102,32 +129,36 @@
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
-						<a class="mui-control-item mui-active" href="#item1mobile">
+						<a class="mui-control-item mui-active" href="#item0mobile">
 							推荐
 						</a>
+						<a class="mui-control-item" href="#item1mobile">
+							移动端
+						</a>
 						<a class="mui-control-item" href="#item2mobile">
-							热点
+							后台系统
 						</a>
 						<a class="mui-control-item" href="#item3mobile">
-							北京
+							web端
 						</a>
 						<a class="mui-control-item" href="#item4mobile">
-							社会
+							电子电路
 						</a>
 						<a class="mui-control-item" href="#item5mobile">
-							娱乐
-						</a>
-						<a class="mui-control-item" href="#item6mobile">
-							科技
+							单片机
 						</a>
 					</div>
+					<div >
+						<button class="btn-right"><span class="mui-icon-arrowright"></span></button>
+					</div>
 				</div>
+				<!--<div id="sliderProgressBar" class="mui-slider-progress-bar  item-display"></div>-->
 				<div class="mui-slider-group">
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div class="mui-scroll-wrapper">
+						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul id="top" class="mui-table-view mui-table-view-chevron">
-
+								<ul class="mui-table-view">
+								
 								</ul>
 							</div>
 						</div>
@@ -135,39 +166,44 @@
 					<div id="item2mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul id="shehui" class="mui-table-view mui-table-view-chevron">
+								<ul class="mui-table-view">
+									
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div id="item3mobile" class="mui-slider-item mui-control-content ">
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul id="guonei" class="mui-table-view mui-table-view-chevron">
+								<ul class="mui-table-view">
+									
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div id="item4mobile" class="mui-slider-item mui-control-content ">
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul id="guoji" class="mui-table-view mui-table-view-chevron">
+								<ul class="mui-table-view">
+									
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div id="item5mobile" class="mui-slider-item mui-control-content ">
+					<div id="item5mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul id="yule" class="mui-table-view mui-table-view-chevron">
+								<ul class="mui-table-view">
+									
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div id="item6mobile" class="mui-slider-item mui-control-content ">
+					<div id="item6mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul id="tiyu" class="mui-table-view mui-table-view-chevron">
+								<ul class="mui-table-view">
+									
 								</ul>
 							</div>
 						</div>
@@ -189,7 +225,19 @@
 			var _DataAccess = new DataAccess();
 			var app = new App();
 			mui.init();
+//			var faultLidListener = function() {
+//				document.getElementById('slider').addEventListener('slide', function(e) {
+//					console.log(e.detail.slideNumber);
+//					mui('#item'+e.detail.slideNumber+'mobile').pullToRefresh().pullDownLoading();
+//				});
+//
+//			}
+			mui.plusReady(function () {
+//			    faultLidListener();
+			})
 			(function($) {
+				//界面滑动监听
+			
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
 				$('.mui-scroll-wrapper').scroll({
@@ -202,10 +250,6 @@
 					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 						$(pullRefreshEl).pullToRefresh({
 							down: {
-								style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
-								color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
-								height: 50, //可选,默认50.触发下拉刷新拖动距离,
-								auto: true, //可选,默认false.首次加载自动上拉刷新一次
 								callback: function() {
 									var self = this;
 									setTimeout(function() {

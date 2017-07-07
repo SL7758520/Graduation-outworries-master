@@ -21,7 +21,10 @@
 			"css/feedback.css",
 			"img/logo.png",
 			"js/feedback.js",
-			"js/mui.view.js"
+			"js/mui.view.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		],
 		"refer": []
 	},
