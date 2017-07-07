@@ -1,0 +1,65 @@
+{
+	"main.html": {
+		"resources": [
+			"home.html",
+			"css/main.css",
+			"css/appfont.css",
+			"js/mui.min.js",
+			"fonts/icomoon.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"home.html",
+			"find.html",
+			"personal.html",
+			"release.html",
+			"chat.html"
+		]
+	},
+	"personal.html": {
+		"resources": [
+			"css/feedback.css",
+			"img/logo.png",
+			"js/feedback.js",
+			"js/mui.view.js"
+		],
+		"refer": []
+	},
+	"chat.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"find.html": {
+		"resources": [
+			"fonts/mui.ttf"
+		],
+		"refer": []
+	},
+	"home.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/dao.js",
+			"js/mui.pullToRefresh.js",
+			"js/localDatabase.js",
+			"js/app.js",
+			"js/mui.pullToRefresh.material.js",
+			"js/mui.lazyload.js",
+			"js/post.js",
+			"js/mui.lazyload.img.js",
+			"fonts/mui.ttf"
+		],
+		"refer": []
+	},
+	"release.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/mui.min.js"
+		],
+		"refer": []
+	}
+}

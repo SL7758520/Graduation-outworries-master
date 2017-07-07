@@ -1,4 +1,4 @@
-﻿{
+{
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H5683FC53",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "Graduation-outworries-master",/*应用名称，程序桌面图标名称*/
@@ -10,7 +10,7 @@
     "icons": {
         "72": "icon.png"
     },
-    "launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path": "main.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -101,7 +101,7 @@
         },
         "NativeObj":{
         	"description": "原生对象"
-        }
+        },"Share":{},"OAuth":{}
     },
     "plus": {
         "splashscreen": {
@@ -126,7 +126,7 @@
                 "keystore": "",/*Android应用打包使用的密钥库文件*/
                 "password": "",/*Android应用打包使用密钥库中证书的密码*/
                 "aliasname": "",/*Android应用打包���用密钥库中证书的别名*/
-               "permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"]
+               "permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
 				/*使用Native.js调用原生安卓API需要使用到的系统权限*/
             },
             "orientation": [
@@ -199,5 +199,96 @@
                 }
             }
         }
-    }
+    },
+	"dependencies": {
+		"pages": {
+			"main.html": {
+				"resources": [
+					"home.html",
+					"css/main.css",
+					"css/appfont.css",
+					"js/mui.min.js",
+					"fonts/icomoon.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"find.html",
+					"personal.html",
+					"release.html",
+					"chat.html"
+				],
+				"priority": 0
+			},
+			"personal.html": {
+				"resources": [
+					"css/feedback.css",
+					"img/logo.png",
+					"js/feedback.js",
+					"js/mui.view.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"chat.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"find.html": {
+				"resources": [
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"home.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/dao.js",
+					"js/mui.pullToRefresh.js",
+					"js/localDatabase.js",
+					"js/app.js",
+					"js/mui.pullToRefresh.material.js",
+					"js/mui.lazyload.js",
+					"js/post.js",
+					"js/mui.lazyload.img.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"release.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"images/main_find.png",
+				"css/style.css",
+				"images/weixin.png",
+				"images/qq.png",
+				"css/mui.css",
+				"js/mui.enterfocus.js",
+				"images/iconfont-tianjia.png",
+				"index.html",
+				"js/webviewGroup.js",
+				"images/sinaweibo.png",
+				"images/qihoo.png",
+				"js/mui.locker.js",
+				"js/mui.js",
+				"images/user-photo.png",
+				"README.md"
+			]
+		}
+	}
 }
