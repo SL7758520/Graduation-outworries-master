@@ -13,114 +13,79 @@
 			body {
 				background-color: #efeff4;
 			}
+			
 			.title {
 				padding: 20px 15px 10px;
 				color: #6d6d72;
 				font-size: 15px;
 				background-color: #fff;
 			}
+			
+			.mui-card .mui-control-content {
+				padding: 10px;
+			}
+			
+			.mui-segmented-control {
+				width: 120px;
+				height: 40px !important;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<div class="title">
-					这是webview模式选项卡中的第2个子页面，该页面展示一个支持下拉刷新、上拉加载的消息列表
-				</div>
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 1</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 2</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 3</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 4</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 5</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 6</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 7</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 8</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 9</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 10</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 11</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 12</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 13</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 14</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 15</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 16</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 17</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 18</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 19</a>
-					</li>
-					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 20</a>
-					</li>
-				</ul>
+		<!--<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">标题</h1>
+		</header>-->
+		<div style="padding: 5px;display: flex;justify-content: space-between;align-items: flex-end; background-color: #b8b2b2;height: 50px;">
+			<div>
+				<a><span class="mui-icon mui-icon-search"></span></a>
+			</div>
+			<div id="sliderSegmentedControl" class="mui-segmented-control ">
+				<a class="mui-control-item mui-active" href="#item1" data-wid="find_hot.html">热吧</a>
+				<a class="mui-control-item" href="#item2" data-wid="find_Subscribe.html">订阅</a>
+			</div>
+			<div>
+				<a id="icon-location"><span class="mui-icon mui-icon-location"></span></a>
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/webviewGroup.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
-					}
-				}
+				swipeBack: false //启用右滑关闭功能
 			});
-			/**
-			 * 下拉刷新具体业务实现
-			 */
-			function pulldownRefresh() {
-				setTimeout(function() {
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for (var i = cells.length, len = i + 3; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						//下拉刷新，新纪录插到最前面；
-						table.insertBefore(li, table.firstChild);
+
+			mui.plusReady(function() {
+				var group = new webviewGroup("find.html", {
+					items: [{
+						id: "find_hot.html",
+						url: "pagers/find_hot.html",
+						extras: {}
+					}, {
+						id: "find_Subscribe.html",
+						url: "pagers/find_Subscribe.html",
+						extras: {}
+					}],
+					onChange: function(obj) {
+						var c = document.querySelector(".mui-control-item.mui-active");
+						if(c) {
+							c.classList.remove("mui-active");
+						}
+						document.querySelector(".mui-control-item:nth-child(" + (parseInt(obj.index) + 1) + ")").classList.add("mui-active");
 					}
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
-				}, 1000);
-			}
-			var count = 0;
-			/**
-			 * 上拉加载具体业务实现
-			 */
-			function pullupRefresh() {
-				setTimeout(function() {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for (var i = cells.length, len = i + 20; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						table.appendChild(li);
-					}
-				}, 1000);
+				});
+				mui("#sliderSegmentedControl").on("tap", ".mui-control-item", function(e) {
+					var wid = this.getAttribute("data-wid");
+					group.switchTab(wid);
+				});
+
+			});
+			mui.back = function() {
+				var _self = plus.webview.currentWebview();
+				_self.close("auto");
 			}
 		</script>
 	</body>
+
 </html>

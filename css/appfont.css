@@ -130,3 +130,6 @@
 .icon_app_36:before {
   content: "\e923";
 }
+.icon_app_37:before {
+  content: url(../images/w7.png);
+}

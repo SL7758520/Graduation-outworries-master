@@ -6,14 +6,17 @@
 			"css/appfont.css",
 			"js/mui.min.js",
 			"fonts/icomoon.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"images/w6.png",
+			"images/w7.png"
 		],
 		"refer": [
 			"home.html",
 			"find.html",
 			"personal.html",
 			"release.html",
-			"chat.html"
+			"chat.html",
+			"splash.html"
 		]
 	},
 	"personal.html": {
@@ -32,15 +35,24 @@
 		"resources": [
 			"fonts/mui.ttf",
 			"js/mui.min.js",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"images/yuantiao.jpg",
+			"images/logo.png"
 		],
 		"refer": []
 	},
 	"find.html": {
 		"resources": [
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/webviewGroup.js",
+			"pagers/find_hot.html"
 		],
-		"refer": []
+		"refer": [
+			"pagers/find_hot.html",
+			"pagers/find_Subscribe.html"
+		]
 	},
 	"home.html": {
 		"resources": [
@@ -54,7 +66,10 @@
 			"js/mui.lazyload.js",
 			"js/post.js",
 			"js/mui.lazyload.img.js",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"images/yuantiao.jpg",
+			"images/logo.png",
+			"images/w7.png"
 		],
 		"refer": []
 	},
@@ -64,5 +79,25 @@
 			"js/mui.min.js"
 		],
 		"refer": []
+	},
+	"pagers/find_hot.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/cbd.jpg",
+			"images/muwu.jpg",
+			"images/yuantiao.jpg",
+			"images/shuijiao.jpg"
+		]
+	},
+	"splash.html": {
+		"resources": [
+			"css/mui.min.css"
+		]
+	},
+	"pagers/find_Subscribe.html": {
+		"resources": [
+			"css/mui.min.css"
+		]
 	}
 }

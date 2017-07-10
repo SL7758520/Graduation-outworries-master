@@ -35,6 +35,21 @@
 				top: 24px;
 			}
 			
+			.mui-card-header {
+				position: relative;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				min-height: 44px;
+				padding: 10px 15px;
+				-webkit-box-pack: justify;
+				-webkit-justify-content: space-between;
+				justify-content: space-between;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center
+			}
+			
 			.mui-pull-top-wrapper {
 				width: 42px;
 				height: 42px;
@@ -74,7 +89,6 @@
 				width: auto;
 				padding: 0 8px;
 				border: 0;
-				
 			}
 			
 			.mui-pull-bottom-tips {
@@ -98,14 +112,16 @@
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
-			.mui-segmented-control.mui-scroll-wrapper .mui-control-item.mui-active{
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item.mui-active {
 				font-size: 17px;
-				color: #222222;
 			}
+			
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
 			}
-			.item-display{
+			
+			.item-display {
 				padding: 0 10px;
 				width: 30px;
 				z-index: 1;
@@ -114,12 +130,12 @@
 				min-height: 1px;
 				background-color: #007aff;
 			}
-			#sliderSegmentedControl{
-				background-color: #b8b2b2;
-			}
-			.btn-right{
+			
+			#sliderSegmentedControl {}
+			
+			.btn-right {
 				height: 40px;
-				background-color:#b8b2b2 ;
+				background-color: #b8b2b2;
 			}
 		</style>
 	</head>
@@ -128,7 +144,7 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll">
+					<div class="mui-scroll" style="background-color: #b8b2b2;">
 						<a class="mui-control-item mui-active" href="#item0mobile">
 							推荐
 						</a>
@@ -148,62 +164,58 @@
 							单片机
 						</a>
 					</div>
-					<div >
-						<button class="btn-right"><span class="mui-icon-arrowright"></span></button>
-					</div>
 				</div>
-				<!--<div id="sliderProgressBar" class="mui-slider-progress-bar  item-display"></div>-->
 				<div class="mui-slider-group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+					<div id="item0mobile" class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-scroll-wrapper">
+							<div id="scroll0" class="mui-scroll">
 								<ul class="mui-table-view">
-								
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item1mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div id="scroll1" class="mui-scroll">
+								<ul class="mui-table-view">
+
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div id="item2mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div id="scroll2" class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div id="item3mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div id="scroll3" class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div id="item4mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div id="scroll4" class="mui-scroll">
 								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div id="item5mobile" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div id="scroll5" class="mui-scroll">
 								<ul class="mui-table-view">
-									
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item6mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view">
-									
+
 								</ul>
 							</div>
 						</div>
@@ -225,19 +237,21 @@
 			var _DataAccess = new DataAccess();
 			var app = new App();
 			mui.init();
-//			var faultLidListener = function() {
-//				document.getElementById('slider').addEventListener('slide', function(e) {
+			var faultLidListener = function() {
+				document.getElementById('slider').addEventListener('slide', function(e) {
 //					console.log(e.detail.slideNumber);
-//					mui('#item'+e.detail.slideNumber+'mobile').pullToRefresh().pullDownLoading();
-//				});
-//
-//			}
-			mui.plusReady(function () {
-//			    faultLidListener();
-			})
+					mui('#scroll' + e.detail.slideNumber).pullToRefresh().pullDownLoading();
+				});
+
+			}
+			mui.plusReady(function() {
+				faultLidListener();
+				plus.nativeUI.closeWaiting();
+				mui('#scroll0').pullToRefresh().pullDownLoading();
+			});
 			(function($) {
 				//界面滑动监听
-			
+
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
 				$('.mui-scroll-wrapper').scroll({
@@ -246,6 +260,7 @@
 					deceleration: deceleration
 				});
 				$.ready(function() {
+//						var waitingDialog = plus.nativeUI.showWaiting(waitingMsg||''); 
 					//循环初始化所有下拉刷新，上拉加载。
 					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 						$(pullRefreshEl).pullToRefresh({
@@ -254,8 +269,10 @@
 									var self = this;
 									setTimeout(function() {
 										var ul = self.element.querySelector('.mui-table-view');
-										ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+										ul.insertBefore(createFragment(ul, index, 5, true), ul.firstChild);
+//										waitingDialog.close();
 										self.endPullDownToRefresh();
+										
 									}, 1000);
 								}
 							},
@@ -265,20 +282,22 @@
 									setTimeout(function() {
 										var ul = self.element.querySelector('.mui-table-view');
 										ul.appendChild(createFragment(ul, index, 5));
+//										waitingDialog.close();
 										self.endPullUpToRefresh();
+										
 									}, 1000);
 								}
 							}
 						});
 					});
 					var createFragment = function(ul, index, count, reverse) {
-						var length = ul.querySelectorAll('li').length;
+						var length = ul.querySelectorAll('div').length;
 						var fragment = document.createDocumentFragment();
 						var li;
 						for(var i = 0; i < count; i++) {
-							li = document.createElement('li');
-							li.className = 'mui-table-view-cell';
-							li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
+							li = document.createElement('div');
+							li.className = 'mui-card';
+							li.innerHTML = '<div class = "mui-card-header mui-card-media" ><img style="  border-radius: 50%;width: 34px;height: 32px;margin-left: 3px;" src="images/logo.png" /><div class = "mui-media-body" >小M <p > 发表于 2016 - 06 - 30 15: 30 </p> </div><div class = "mui-card-content" ><img src = "images/yuantiao.jpg" alt = "" width = "100%" /></div> <div class = "mui-card-footer" ><a class = "mui-card-link" > Like </a> <a class = "mui-card-link" > Comment </a> <a class = "mui-card-link" > Read more </a></div></div>';
 							fragment.appendChild(li);
 						}
 						return fragment;
@@ -286,5 +305,4 @@
 				});
 			})(mui);
 		</script>
-
 </html>

@@ -106,7 +106,7 @@
     "plus": {
         "splashscreen": {
             "autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-            "waiting": true/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+            "waiting": false/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
         },
         "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
         "runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
@@ -209,13 +209,16 @@
 					"css/appfont.css",
 					"js/mui.min.js",
 					"fonts/icomoon.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"images/w6.png",
+					"images/w7.png"
 				],
 				"refer": [
 					"find.html",
 					"personal.html",
 					"release.html",
-					"chat.html"
+					"chat.html",
+					"splash.html"
 				],
 				"priority": 0
 			},
@@ -236,16 +239,24 @@
 				"resources": [
 					"fonts/mui.ttf",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"images/yuantiao.jpg",
+					"images/logo.png"
 				],
 				"refer": [],
 				"priority": 0
 			},
 			"find.html": {
 				"resources": [
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/webviewGroup.js",
+					"pagers/find_hot.html"
 				],
-				"refer": [],
+				"refer": [
+					"pagers/find_Subscribe.html"
+				],
 				"priority": 0
 			},
 			"home.html": {
@@ -260,7 +271,10 @@
 					"js/mui.lazyload.js",
 					"js/post.js",
 					"js/mui.lazyload.img.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"images/yuantiao.jpg",
+					"images/logo.png",
+					"images/w7.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -269,6 +283,32 @@
 				"resources": [
 					"css/mui.min.css",
 					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pagers/find_hot.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/cbd.jpg",
+					"images/muwu.jpg",
+					"images/yuantiao.jpg",
+					"images/shuijiao.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"splash.html": {
+				"resources": [
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pagers/find_Subscribe.html": {
+				"resources": [
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -284,7 +324,6 @@
 				"js/mui.enterfocus.js",
 				"images/iconfont-tianjia.png",
 				"index.html",
-				"js/webviewGroup.js",
 				"images/sinaweibo.png",
 				"images/qihoo.png",
 				"js/mui.locker.js",
