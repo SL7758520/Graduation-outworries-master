@@ -211,14 +211,16 @@
 					"fonts/icomoon.ttf",
 					"css/mui.min.css",
 					"images/w6.png",
-					"images/w7.png"
+					"images/w7.png",
+					"images/uw.png",
+					"release.html"
 				],
 				"refer": [
 					"find.html",
 					"personal.html",
-					"release.html",
 					"chat.html",
-					"splash.html"
+					"splash.html",
+					"issue.html"
 				],
 				"priority": 0
 			},
@@ -241,7 +243,9 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"images/yuantiao.jpg",
-					"images/logo.png"
+					"images/logo.png",
+					"images/cbd.jpg",
+					"images/shuijiao.jpg"
 				],
 				"refer": [],
 				"priority": 0
@@ -274,7 +278,8 @@
 					"fonts/mui.ttf",
 					"images/yuantiao.jpg",
 					"images/logo.png",
-					"images/w7.png"
+					"images/w7.png",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -282,7 +287,15 @@
 			"release.html": {
 				"resources": [
 					"css/mui.min.css",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"images/cbd.jpg",
+					"images/yuantiao.jpg",
+					"fonts/mui.ttf",
+					"images/shuijiao.jpg",
+					"images/a3v.png",
+					"images/a2d.png",
+					"images/lo.png",
+					"images/i2.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -294,7 +307,10 @@
 					"images/cbd.jpg",
 					"images/muwu.jpg",
 					"images/yuantiao.jpg",
-					"images/shuijiao.jpg"
+					"images/shuijiao.jpg",
+					"images/60x60.gif",
+					"js/mui.lazyload.js",
+					"js/mui.lazyload.img.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -308,7 +324,11 @@
 			},
 			"pagers/find_Subscribe.html": {
 				"resources": [
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"images/60x60.gif",
+					"js/mui.lazyload.js",
+					"js/mui.lazyload.img.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -327,7 +347,6 @@
 				"images/sinaweibo.png",
 				"images/qihoo.png",
 				"js/mui.locker.js",
-				"js/mui.js",
 				"images/user-photo.png",
 				"README.md"
 			]

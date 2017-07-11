@@ -15,57 +15,54 @@
 				background-color: #efeff4;
 			}
 			
-			.title {
-				margin: 20px 15px 10px;
-				color: #6d6d72;
-				font-size: 15px;
+			#title {
+				background-color: #b8b2b2;
+			}
+			img{
+				height: 30px;
+				width: 30px;
+				border-radius: 5px
+			}
+			.mui-media-body{
+				margin-left: 40px;
+				margin-top: 5px;
 			}
 		</style>
 	</head>
 
 	<body>
-		<ul class="mui-table-view">
-			<div class="mui-card">
-				<div class="mui-card-header mui-card-media">
-					<img style="  border-radius: 50%;" src="images/logo.png" />
-					<div class="mui-media-body">
-						小M
-						<p>发表于 2016-06-30 15:30</p>
-					</div>
-					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
-					<h2>小M</h2>
-					<p>发表于 2016-06-30 15:30</p>-->
-				</div>
-				<div class="mui-card-content">
-					<img src="images/yuantiao.jpg" alt="" width="100%" />
-				</div>
-				<div class="mui-card-footer">
-					<a class="mui-card-link">Like</a>
-					<a class="mui-card-link">Comment</a>
-					<a class="mui-card-link">Read more</a>
-				</div>
-			</div>
-			<div class="mui-card">
-				<div class="mui-card-header mui-card-media">
-					<img style="  border-radius: 50%;" src="images/logo.png" />
-					<div class="mui-media-body">
-						小M
-						<p>发表于 2016-06-30 15:30</p>
-					</div>
-					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
-					<h2>小M</h2>
-					<p>发表于 2016-06-30 15:30</p>-->
-				</div>
-				<div class="mui-card-content">
-					<img src="images/yuantiao.jpg" alt="" width="100%" />
-				</div>
-				<div class="mui-card-footer">
-					<a class="mui-card-link">Like</a>
-					<a class="mui-card-link">Comment</a>
-					<a class="mui-card-link">Read more</a>
-				</div>
-			</div>
-		</ul>
+		<header id="title" class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">消息</h1>
+			<a id="btnNew" class="mui-btn mui-btn-link mui-pull-right" style="color:#4f4f4f;">黑名单</a>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right">
+						<img class="mui-pull-left" src="images/cbd.jpg">
+						<div class="mui-media-body">
+							发帖互动
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a class='mui-navigate-right' href="javascript:;">
+						<img class="mui-pull-left" src="images/yuantiao.jpg">
+						<div class="mui-media-body">
+							系统消息
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right">
+						<img class="mui-pull-left" src="images/shuijiao.jpg">
+						<div class="mui-media-body">
+							粉丝关注
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</body>
 	<script src="js/mui.min.js"></script>
 	<script>

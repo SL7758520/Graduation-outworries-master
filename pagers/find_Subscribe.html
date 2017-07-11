@@ -6,18 +6,51 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.red{
+				color: red;
+			}
+		</style>
 	</head>
 
 	<body>
-		<div id="">
-			<span id="">
-				啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-			</span>
-			
+		<div>
+			<ul id="equipment" class="mui-table-view">
+			</ul>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.lazyload.js"></script>
+		<script src="../js/mui.lazyload.img.js"></script>
 		<script type="text/javascript">
+			var datas = {
+				title: "户外运动俱乐部",
+				massage: "垂钓爬山徒步攀岩，亲近自然，挑战自我！",
+				Subscription_number: 76238,
+				Total_posts: "<span class='red'>15464",
+				update:"<span class='red'>75"
+			};
 			mui.init()
+			(function($) {
+					addList();
+					$(document).imageLazyload({
+						placeholder: '../images/60x60.gif'
+					});
+				})(mui);
+
+			function addList() {
+				var div = document.getElementById("equipment");
+				for(var i = 0; i < 10; i++) {
+					div.appendChild(addData(i));
+				}
+			}
+
+			function addData(i) {
+				var card = document.createElement("li");
+				card.className = 'mui-table-view-cell';
+				var html = '<div><img style="width: 48px;height: 48px;border-radius: 5px" class="mui-pull-left" data-lazyload="http://www.dcloud.io/hellomui/images/' + (i % 5 + 1) + '.jpg?version=' + Math.random() * 1000 + '"><div style="margin-left: 55px;"><div style="display: flex;justify-content: space-between;align-items: flex-start;"><h5 class="mui-ellipsis" style="color:#000000;">' + datas.title + '</h5><h6>今日更新&nbsp'+datas.update+'</h6></div><h5 class="mui-ellipsis" style="margin-top:5px;">' + datas.massage + '</h5></div></div>';
+				card.innerHTML = html;
+				return card;
+			}
 		</script>
 	</body>
 

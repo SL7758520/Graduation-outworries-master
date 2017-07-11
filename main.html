@@ -21,6 +21,10 @@
 			.mui-tab-label {
 				font-size: small;
 			}
+			img{
+				height: 35px;
+				width: 60px;
+			}
 		</style>
 	</head>
 
@@ -35,23 +39,32 @@
 				<span class="mui-icon icon_app_34"></span>
 				<span class="mui-tab-label">发现</span>
 			</a>
-			<a class="mui-tab-item" href="release.html">
-				<span class="mui-icon icon_app_35"></span>
-				<span class="mui-tab-label">发布</span>
-				<a class="mui-tab-item" href="chat.html">
-					<span class="mui-icon icon_app_14"></span>
-					<span class="mui-tab-label">消息</span>
-				</a>
-				<a class="mui-tab-item" href="personal.html">
-					<span class="mui-icon icon_app_12"></span>
-					<span class="mui-tab-label">我的</span>
-				</a>
+			<a class="mui-tab-item" href="#Popover_0"><img src="images/uw.png"/></a>
+			<a class="mui-tab-item" href="chat.html">
+				<span class="mui-icon icon_app_14"></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="personal.html">
+				<span class="mui-icon icon_app_12"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
 		</nav>
+		<div id="Popover_0" class="mui-popover mui-bar-popover">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="release.html">iOS</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#">Android</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#">HTML5</a>
+				</li>
+			</ul>
+		</div>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			//mui初始化
 			mui.init();
-			var subpages = ['home.html', 'find.html', 'release.html', 'chat.html', 'personal.html'];
+			var subpages = ['home.html', 'find.html', 'chat.html', 'personal.html'];
 			var subpage_style = {
 				top: '0px',
 				bottom: '60px'

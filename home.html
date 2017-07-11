@@ -137,6 +137,51 @@
 				height: 40px;
 				background-color: #b8b2b2;
 			}
+			#icon{
+				animation-name: myfirst;
+				animation-duration: 0.5s;
+				animation-timing-function: linear;
+				animation-delay: 0s;
+				animation-iteration-count: infinite;
+				animation-direction: normal;
+				Transform: Rotate;
+				animation-play-state: paused;
+			}
+			
+			.backTop {
+				background: #DDDDDD;
+				border-radius: 50%;
+				position: fixed;
+				right: 10px;
+				bottom: 15px;
+				width: 38px;
+				height: 38px;
+				z-index: 9999;
+				text-align: center;
+				font-size: 18px;
+				color: #666666;
+				padding-top: 8px;
+				opacity: 0.8;
+				
+			}
+			
+			@keyframes myfirst {
+				0% {
+					transform: rotate(0deg);
+				}
+				25% {
+					transform: rotate(90deg);
+				}
+				50% {
+					transform:rotate(180deg);
+				}
+				75% {
+					transform:rotate(270deg);
+				}
+				100% {
+					transform:rotate(360deg);
+				}
+			}
 		</style>
 	</head>
 
@@ -167,7 +212,7 @@
 				</div>
 				<div class="mui-slider-group">
 					<div id="item0mobile" class="mui-slider-item mui-control-content mui-active">
-						<div class="mui-scroll-wrapper">
+						<div id="wrapper0" class="mui-scroll-wrapper">
 							<div id="scroll0" class="mui-scroll">
 								<ul class="mui-table-view">
 
@@ -176,7 +221,7 @@
 						</div>
 					</div>
 					<div id="item1mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
+						<div id="wrapper1" class="mui-scroll-wrapper">
 							<div id="scroll1" class="mui-scroll">
 								<ul class="mui-table-view">
 
@@ -185,7 +230,7 @@
 						</div>
 					</div>
 					<div id="item2mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
+						<div id="wrapper2" class="mui-scroll-wrapper">
 							<div id="scroll2" class="mui-scroll">
 								<ul class="mui-table-view">
 
@@ -194,7 +239,7 @@
 						</div>
 					</div>
 					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
+						<div id="wrapper3" class="mui-scroll-wrapper">
 							<div id="scroll3" class="mui-scroll">
 								<ul class="mui-table-view">
 
@@ -203,7 +248,7 @@
 						</div>
 					</div>
 					<div id="item4mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
+						<div id="wrapper4" class="mui-scroll-wrapper">
 							<div id="scroll4" class="mui-scroll">
 								<ul class="mui-table-view">
 
@@ -212,7 +257,7 @@
 						</div>
 					</div>
 					<div id="item5mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
+						<div id="wrapper5" class="mui-scroll-wrapper">
 							<div id="scroll5" class="mui-scroll">
 								<ul class="mui-table-view">
 
@@ -222,9 +267,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
+			<a id="scrollToTop" class="backTop">
+				<span id="icon" class="mui-icon mui-icon-reload"></span>
+			</a>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/mui.js"></script>
 		<script src="js/post.js"></script>
 		<script src="js/localDatabase.js"></script>
 		<script src="js/dao.js"></script>
@@ -234,12 +282,16 @@
 		<script src="js/mui.lazyload.img.js"></script>
 		<script src="js/app.js"></script>
 		<script type="text/javascript">
+			mui.init();
 			var _DataAccess = new DataAccess();
 			var app = new App();
-			mui.init();
+			var icon;
+			var index = 0;
+			//			var goToTop = document.getElementById("goToTop");
 			var faultLidListener = function() {
 				document.getElementById('slider').addEventListener('slide', function(e) {
-//					console.log(e.detail.slideNumber);
+					index = e.detail.slideNumber;
+					console.log(e.detail.slideNumber);
 					mui('#scroll' + e.detail.slideNumber).pullToRefresh().pullDownLoading();
 				});
 
@@ -247,7 +299,17 @@
 			mui.plusReady(function() {
 				faultLidListener();
 				plus.nativeUI.closeWaiting();
+				icon=document.getElementById("icon");
 				mui('#scroll0').pullToRefresh().pullDownLoading();
+				var scrollToTopBox = document.getElementById('scrollToTop');
+				//返回按钮tap
+				scrollToTopBox.addEventListener('tap', function(e) {
+					console.log(index);
+					e.stopPropagation();
+					icon.style.animationPlayState='running';
+					mui('#wrapper' + index).scroll().scrollTo(0, 0, 100); //滚动到顶部
+					mui('#scroll' + index).pullToRefresh().pullDownLoading();
+				});
 			});
 			(function($) {
 				//界面滑动监听
@@ -260,7 +322,7 @@
 					deceleration: deceleration
 				});
 				$.ready(function() {
-//						var waitingDialog = plus.nativeUI.showWaiting(waitingMsg||''); 
+					//						var waitingDialog = plus.nativeUI.showWaiting(waitingMsg||''); 
 					//循环初始化所有下拉刷新，上拉加载。
 					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 						$(pullRefreshEl).pullToRefresh({
@@ -270,9 +332,9 @@
 									setTimeout(function() {
 										var ul = self.element.querySelector('.mui-table-view');
 										ul.insertBefore(createFragment(ul, index, 5, true), ul.firstChild);
-//										waitingDialog.close();
+										icon.style.animationPlayState='paused';
 										self.endPullDownToRefresh();
-										
+
 									}, 1000);
 								}
 							},
@@ -282,9 +344,9 @@
 									setTimeout(function() {
 										var ul = self.element.querySelector('.mui-table-view');
 										ul.appendChild(createFragment(ul, index, 5));
-//										waitingDialog.close();
+										//										waitingDialog.close();
 										self.endPullUpToRefresh();
-										
+
 									}, 1000);
 								}
 							}
@@ -305,4 +367,5 @@
 				});
 			})(mui);
 		</script>
+
 </html>

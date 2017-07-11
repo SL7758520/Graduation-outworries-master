@@ -27,7 +27,7 @@
 			
 			.mui-segmented-control {
 				width: 120px;
-				height: 40px !important;
+				height: 0 !important;
 			}
 		</style>
 	</head>
@@ -53,7 +53,10 @@
 		<script src="js/webviewGroup.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			mui.init({
-				swipeBack: false //启用右滑关闭功能
+				swipeBack: false, //启用右滑关闭功能
+				gestureConfig: {
+					swipe: false, //默认为true
+				}
 			});
 
 			mui.plusReady(function() {

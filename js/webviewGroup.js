@@ -231,7 +231,7 @@ _proto.createWebview = function(from) {
 	var options = this.options;
 	options.styles = options.styles || {
 		top: "50px",
-		bottom: "60px",
+		bottom: "0px",
 		render: "always"
 	};
 	options.styles.popGesture = 'none';
