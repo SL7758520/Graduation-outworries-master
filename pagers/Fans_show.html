@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style type="text/css">
 			body {
 				background-color: #d0d0d0;
@@ -128,23 +128,42 @@
 				width: 30px;
 				margin-top: 5px;
 			}
+			
+			.mui-btn {
+				color: red;
+				border: 1px solid red;
+				width: 60px;
+			}
+			#add{
+				width: 200px;
+				font-size: 14px;
+			}
+			#Private{
+				width: 80px;
+				font-size: 14px;
+			}
+			#Private_img{
+				width: 18px;
+				height: 18px;
+				margin-right: 8px;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #b8b2b2;">
 			<h1 class="mui-title">个人信息</h1>
-			<img id="money" src="images/xa.png" class="mui-pull-right"></img>
+			<a id="btnNew" class="mui-btn mui-btn-link mui-pull-right" style="color:#4f4f4f;">拉黑</a>
 		</header>
 		<div class="mui-content">
 			<div id="" class="heard_xinxi">
 				<div id="geren">
-					<img id="icon" src="images/icom.jpg" class="mui-pull-left" />
+					<img id="icon" src="../images/icom.jpg" class="mui-pull-left" />
 				</div>
 				<div id="" style="margin-left: 115px;">
 					<div id="" style="display: flex;align-items: center;">
 						<h4>2018丶段友会发</h4>
-						<img src="images/vr.png" style='width: 15px;height: 15px;margin-left: 5px;' />
+						<img src="../images/vr.png" style='width: 15px;height: 15px;margin-left: 5px;' />
 					</div>
 					<div id="" style="display: flex;align-items: center;">
 						<h6 style="border-radius: 10px;background-color: #777777;height: 18px;width: 50px;text-align: center;color: white;line-height: 18px">广州</h6>
@@ -167,12 +186,21 @@
 
 				</div>
 				<div id="" style="display: flex;justify-content:space-around; align-items: center;margin-top: 10px;">
+					<button id="add" type="button" class="mui-btn " onclick="showActionSheet('¥6.00')">
+							+加关注
+					</button>
+					<button id="Private" type="button" class="mui-btn " onclick="showActionSheet()">
+							<img id="Private_img" src="../images/uj.png" class="mui-pull-left" />私信
+					</button>
+				</div>
+
+				<div id="" style="display: flex;justify-content:space-around; align-items: center;margin-top: 10px;">
 					<div id="" style="display: flex;align-items: center;">
-						<img src="images/ub.png" style='width: 15px;height: 15px;margin-left: 5px;' />
+						<img src="../images/ub.png" style='width: 15px;height: 15px;margin-left: 5px;' />
 						<h5 style="margin-left: 10px;">送出钻石：1234</h5>
 					</div>
 					<div id="" style="display: flex;align-items: center;">
-						<img src="images/ud.png" style='width: 15px;height: 15px;margin-left: 5px;' />
+						<img src="../images/ud.png" style='width: 15px;height: 15px;margin-left: 5px;' />
 						<h5 style="margin-left: 10px;">获得火力：1234</h5>
 					</div>
 				</div>
@@ -203,7 +231,7 @@
 								</div>
 								<div id="faitie">
 									<div style="text-align: center">
-										<img src="images/tl.png" style="margin-top: 10px;" />
+										<img src="../images/tl.png" style="margin-top: 10px;" />
 										<p>不会发段子的土豪不是好逗比</p>
 									</div>
 								</div>
@@ -219,7 +247,7 @@
 								</div>
 								<div id="shoucang">
 									<div style="text-align: center">
-										<img src="images/tj.png" style="margin-top: 10px;" />
+										<img src="../images/tj.png" style="margin-top: 10px;" />
 										<p>问君能有几多愁,</p>
 										<p>恰似一个段子都没留!</p>
 									</div>
@@ -237,7 +265,7 @@
 								</div>
 								<div id="pinglun">
 									<div style="text-align: center">
-										<img src="images/ti.png" style="margin-top: 10px;" />
+										<img src="../images/ti.png" style="margin-top: 10px;" />
 										<p>快去抢沙发吧!</p>
 									</div>
 								</div>
@@ -248,19 +276,21 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/mui.min.js"></script>
-		<script src="js/mui.pullToRefresh.js"></script>
-		<script src="js/mui.pullToRefresh.material.js"></script>
-		<script src="js/app.js" type="text/javascript">
+		<script src="../js/mui.min.js"></script>
+		
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script src="../js/app.js" type="text/javascript">
 		</script>
 		<script type="text/javascript">
 			mui.init();
-			var _app=new App();
-			mui.plusReady(function () {
-			   document.getElementById("money").addEventListener("tap",function(event){
-			   		_app.openWindow("wallet.html","pagers/wallet.html");
-			   });
+			var _app = new App();
+			mui.plusReady(function() {
+
 			});
+			function showActionSheet(){
+				_app.openWindow("im_chat.html","im_chat.html");
+			}
 			(function($) {
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
@@ -280,8 +310,8 @@
 								callback: function() {
 									var self = this;
 									setTimeout(function() {
-//										var ul = self.element.querySelector('.mui-table-view');
-//										ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+										//										var ul = self.element.querySelector('.mui-table-view');
+										//										ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
 										self.endPullDownToRefresh();
 									}, 1000);
 								}

@@ -26,8 +26,15 @@
 			}
 			
 			.mui-segmented-control {
-				width: 120px;
+				width: 130px;
 				height: 0 !important;
+				border: 1px solid #007aff;
+			}
+			.mui-segmented-control .mui-control-item{
+				line-height: 30px;
+			}
+			.mui-segmented-control .mui-control-item .mui-active{
+				background-color:#;
 			}
 		</style>
 	</head>
@@ -37,9 +44,9 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">标题</h1>
 		</header>-->
-		<div style="padding: 5px;display: flex;justify-content: space-between;align-items: flex-end; background-color: #b8b2b2;height: 50px;">
+		<div style="padding: 5px;display: flex;justify-content: space-between;align-items: flex-end; background-color: #b8b2b2;height: 42px;">
 			<div>
-				<a><span class="mui-icon mui-icon-search"></span></a>
+				<a id="search"><span class="mui-icon mui-icon-search"></span></a>
 			</div>
 			<div id="sliderSegmentedControl" class="mui-segmented-control ">
 				<a class="mui-control-item mui-active" href="#item1" data-wid="find_hot.html">热吧</a>
@@ -50,8 +57,10 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script src="js/webviewGroup.js" type="text/javascript" charset="utf-8"></script>
 		<script>
+			var _app;
 			mui.init({
 				swipeBack: false, //启用右滑关闭功能
 				gestureConfig: {
@@ -60,6 +69,7 @@
 			});
 
 			mui.plusReady(function() {
+				_app=new App();
 				var group = new webviewGroup("find.html", {
 					items: [{
 						id: "find_hot.html",
@@ -82,12 +92,20 @@
 					var wid = this.getAttribute("data-wid");
 					group.switchTab(wid);
 				});
+				document.getElementById("icon-location").addEventListener("tap",function(event){
+					_app.openWindow("find_nearby.html","pagers/find_nearby.html");
+//					mui.back();
+				});
+				document.getElementById("search").addEventListener("tap",function(event){
+					_app.openWindow("find_search.html","pagers/find_search.html");
+//					mui.back();
+				});
 
 			});
-			mui.back = function() {
-				var _self = plus.webview.currentWebview();
-				_self.close("auto");
-			}
+//			mui.back = function() {
+//				var _self = plus.webview.currentWebview();
+//				_self.close("auto");
+//			}
 		</script>
 	</body>
 

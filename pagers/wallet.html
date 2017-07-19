@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" class="feedback">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/device_fault.css" rel="stylesheet" />
+		<style type="text/css">
+			.jianbian {
+				background-image: url(../images/a.9.png);
+				width: 100%;
+				height: 200px;
+			}
+			
+			#jilu {
+				height: 30px;
+				width: 30px;
+				margin-top: 5px;
+			}
+			
+			.nongyu {
+				background: #FFFFFF;
+			}
+			
+			.zuanshi {
+				width: 70px;
+				height: 70px;
+				border: 2px solid #f8f8f8;
+				border-radius: 50%;
+				text-align: center;
+				margin-top: 25px;
+				margin-left: 15px;
+			}
+			
+			.mui-btn {
+				border-radius: 15px;
+				color: red;
+				border: 1px solid red;
+				width: 80px;
+			}
+		</style>
+		<script type="text/javascript">
+			var pays = {};
+
+			//			document.addEventListener('plusready', plusReady, false);
+			// 检测是否安装支付服务
+			function checkServices(pc) {
+				if(!pc.serviceReady) {
+					var txt = null;
+					switch(pc.id) {
+						case 'alipay':
+							txt = '检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
+							break;
+						default:
+							txt = '系统未安装“' + pc.description + '”服务，无法完成支付，是否立即安装？';
+							break;
+					}
+					plus.nativeUI.confirm(txt, function(e) {
+						if(e.index == 0) {
+							pc.installService();
+						}
+					}, pc.description);
+				}
+			}
+
+			var w = null;
+			var PAYSERVER = 'http://demo.dcloud.net.cn/payment/?payid=';
+			// 支付
+			function pay(id) {
+				if(w) {
+					return;
+				} //检查是否请求订单中
+				if(id === 'appleiap') {
+					//					console.log('应用内支付');
+					clicked('payment_iap.html');
+					return;
+				}
+				console.log('----- 请求支付 -----');
+				var url = PAYSERVER;
+				if(id == 'alipay' || id == 'wxpay') {
+					url += id;
+				} else {
+					plus.nativeUI.alert('当前环境不支持此支付通道！', null, '捐赠');
+					return;
+				}
+				var appid = plus.runtime.appid;
+				if(navigator.userAgent.indexOf('StreamApp') >= 0) {
+					appid = 'Stream';
+				}
+				url += '&appid=' + appid + '&total=';
+
+				w = plus.nativeUI.showWaiting();
+				// 请求支付订单
+				var amount = '1';
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					switch(xhr.readyState) {
+						case 4:
+							w.close();
+							w = null;
+							if(xhr.status == 200) {
+								console.log('----- 请求订单成功 -----');
+								console.log(xhr.responseText);
+								var order = xhr.responseText;
+								plus.payment.request(pays[id], order, function(result) {
+									//									console.log('----- 支付成功 -----');
+									//									console.log(JSON.stringify(result));
+									plus.nativeUI.alert('支付成功：感谢你的支持，我们会继续努力完善产品。', function() {
+										back();
+									}, '捐赠');
+								}, function(e) {
+									//									console.log('----- 支付失败 -----');
+									//									console.log('[' + e.code + ']：' + e.message);
+									plus.nativeUI.alert('更多错误信息请参考支付(Payment)规范文档：http://www.html5plus.org/#specification#/specification/Payment.html', null, '支付失败：' + e.code);
+								});
+							} else {
+								//								console.log('----- 请求订单失败 -----');
+								//								console.log(xhr.status);
+								plus.nativeUI.alert('获取订单信息失败！', null, '捐赠');
+							}
+							break;
+						default:
+							break;
+					}
+				}
+				xhr.open('GET', url + amount);
+				console.log('请求支付订单：' + url + amount);
+				xhr.send();
+			}
+
+			function showActionSheet(price) {
+				var bts = [];
+				// 获取支付通道
+				plus.payment.getChannels(function(channels) {
+
+					for(var i in channels) {
+						var channel = channels[i];
+						if(channel.id == 'qhpay' || channel.id == 'qihoo') { // 过滤掉不支持的支付通道：暂不支持360相关支付
+							continue;
+						}
+						pays[channel.id] = channel;
+						console.log(channel.description);
+						bts.push({
+							title: channel.description
+						});
+						checkServices(channel);
+
+					}
+					plus.nativeUI.actionSheet({
+							title: price,
+							cancel: "取消",
+							buttons: bts
+						},
+						function(e) {
+//							mui.toast("选择了\"" + ((e.index > 0) ? bts[e.index - 1].title : "取消") + "\"");
+							if(bts[e.index - 1].title == "支付宝") {
+								pay("alipay");
+							} else if(bts[e.index - 1].title == "微信") {
+								pay("wxpay");
+							}
+						}
+					);
+					//					info.innerText = txt;
+				}, function(e) {
+					console.log('获取支付通道失败：' + e.message);
+				});
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-transparent">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title ">充值</h1>
+			<img id="jilu" src="../images/a3j.png" class="mui-pull-right"></img>
+		</header>
+		<div class="mui-content">
+			<div class="jianbian" style=" text-align: center; padding: 10px;">
+				<p style="margin-top: 80px;color: white;font-size: 40px;">10000.00</p>
+				<p style="margin-top: 20px;color: white;font-size: 16px;">余额<img src="../images/a2j.png" width="20px" ;height="20px" style="margin-left: 5px;"></p>
+			</div>
+			<div class="nongyu" style="display: flex;justify-content: space-around; align-items: center;">
+				<div>
+					<div class="zuanshi">
+						<img style="margin-top: 20px;" src="../images/a2i.png" />
+					</div>
+					<p style="text-align: center;font-size: 16px;color: #000000;margin-top: 10px;">累计钻石</p>
+					<p style="text-align: center;font-size: 16px;">4<img src="../images/a2i.png" width="15px" ;height="15px" style="margin-left: 3px;"></p>
+
+				</div>
+				<div>
+					<div class="zuanshi">
+						<img style="margin-top: 20px;" src="../images/a2i.png" />
+					</div>
+					<p style="text-align: center;font-size: 16px;color: #000000;margin-top: 10px;">当前荣誉</p>
+					<p style="text-align: center;font-size: 16px;">暂无</p>
+
+				</div>
+				<div>
+					<div class="zuanshi">
+						<img style="margin-top: 20px;" src="../images/a2i.png" />
+					</div>
+					<p style="text-align: center;font-size: 16px;color: #000000;margin-top: 10px;">下个荣誉</p>
+					<p style="text-align: center;font-size: 16px;">0/1万<img src="../images/a2i.png" width="15px" ;height="15px" style="margin-left: 3px;"></p>
+
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<div class="mui-inline">充值金额</div>
+			</div>
+			<div>
+				<ul id="equipment" class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">10<span style="font-size: 16px;text-align: center;margin-left: 10px;">赠送10钻石(首充特惠)</span></p>
+						<button type="button" class="mui-btn " onclick="showActionSheet('¥1.00')">
+							¥1.00
+						</button>
+					</li>
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">60</p>
+						<button type="button" class="mui-btn " onclick="showActionSheet('¥6.00')">
+							¥6.00
+						</button>
+					</li>
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">300</p>
+						<button type="button" class="mui-btn " onclick="showActionSheet('¥30.00')">
+							¥30.00
+						</button>
+					</li>
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">980</p>
+						<button type="button" class="mui-btn" onclick="showActionSheet('¥98.00')">
+							¥98.00
+						</button>
+					</li>
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">2980</p>
+						<button type="button" class="mui-btn" onclick="showActionSheet('¥298.00')">
+							¥298.00
+						</button>
+					</li>
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">5980</p>
+						<button type="button" class="mui-btn " onclick="showActionSheet('¥598.00')">
+							¥598.00
+						</button>
+					</li>
+					<li class="mui-table-view-cell">
+						<p style="text-align: start;font-size: 22px;"><img src="../images/a2j.png" width="20px" ;height="20px" style="margin-right: 10px;">15980<span style="font-size: 16px;text-align: center;margin-left: 10px;">赠送388钻石</span></p>
+						<button type="button" class="mui-btn " onclick="showActionSheet('¥1598.00')">
+							¥1598.00
+						</button>
+					</li>
+				</ul>
+
+			</div>
+			<div class="mui-content-padded">
+				<div class="mui-inline">火山小提示：
+					<p style="font-size: 18px;">你的火山号为68859018，搜索支付宝服务号"火山地球"也可以充值购买钻石哦~</p>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

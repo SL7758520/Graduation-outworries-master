@@ -230,7 +230,7 @@ var _proto = webviewGroupContext.prototype;
 _proto.createWebview = function(from) {
 	var options = this.options;
 	options.styles = options.styles || {
-		top: "50px",
+		top: "42px",
 		bottom: "0px",
 		render: "always"
 	};

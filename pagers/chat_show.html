@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #efeff4;
+		}
+		
+		#title {
+			background-color: #b8b2b2;
+		}
+		
+		img {
+			height: 40px;
+			width: 40px;
+			border-radius: 50%
+		}
+		
+		.mui-media-body {
+			margin-left: 50px;
+			margin-top: 10px;
+		}
+		
+		.mui-btn {
+			color: red;
+			border: 1px solid red;
+			width: 60px;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">粉丝</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="fans" class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media">
+					<img class="mui-pull-left" src="../images/cbd.jpg">
+					<div class="mui-media-body">
+						ts红尘多败笔
+					</div>
+					<button type="button" class="mui-btn " onclick="showActionSheet('¥6.00')">
+							关注
+					</button>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<img class="mui-pull-left" src="../images/yuantiao.jpg">
+					<div class="mui-media-body">
+						Dreamer织梦者
+					</div>
+					<button type="button" class="mui-btn " onclick="showActionSheet('¥6.00')">
+							关注
+					</button>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<img class="mui-pull-left" src="../images/60x60.gif">
+					<div class="mui-media-body">
+						用户已封禁
+					</div>
+					<button type="button" class="mui-btn " onclick="showActionSheet('¥6.00')">
+							关注
+					</button>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			var _app=new App();
+			mui.plusReady(function() {
+				mui("#fans").on("tap","li",function(event){
+					_app.openWindow("Fans_show.html","Fans_show.html");
+				});
+			})
+		</script>
+	</body>
+
+</html>

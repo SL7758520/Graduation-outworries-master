@@ -30,9 +30,23 @@
 			"js/mui.view.js",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"images/logo.png",
+			"images/vr.png",
+			"images/icom.jpg",
+			"images/ub.png",
+			"images/ud.png",
+			"images/tl.png",
+			"images/xa.png",
+			"images/tj.png",
+			"images/ti.png",
+			"js/mui.pullToRefresh.js",
+			"js/app.js",
+			"js/mui.pullToRefresh.material.js"
 		],
-		"refer": []
+		"refer": [
+			"pagers/wallet.html"
+		]
 	},
 	"chat.html": {
 		"resources": [
@@ -42,9 +56,12 @@
 			"images/yuantiao.jpg",
 			"images/logo.png",
 			"images/cbd.jpg",
-			"images/shuijiao.jpg"
+			"images/shuijiao.jpg",
+			"pagers/chat_show.html"
 		],
-		"refer": []
+		"refer": [
+			"pagers/chat_show.html"
+		]
 	},
 	"find.html": {
 		"resources": [
@@ -52,11 +69,14 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"js/webviewGroup.js",
-			"pagers/find_hot.html"
+			"pagers/find_hot.html",
+			"js/app.js"
 		],
 		"refer": [
 			"pagers/find_hot.html",
-			"pagers/find_Subscribe.html"
+			"pagers/find_Subscribe.html",
+			"pagers/find_nearby.html",
+			"pagers/find_search.html"
 		]
 	},
 	"home.html": {
@@ -90,9 +110,12 @@
 			"images/a3v.png",
 			"images/a2d.png",
 			"images/lo.png",
-			"images/i2.png"
+			"images/i2.png",
+			"main.html"
 		],
-		"refer": []
+		"refer": [
+			"main.html"
+		]
 	},
 	"pagers/find_hot.html": {
 		"resources": [
@@ -119,6 +142,73 @@
 			"images/60x60.gif",
 			"js/mui.lazyload.js",
 			"js/mui.lazyload.img.js"
+		]
+	},
+	"pagers/find_nearby.html": {
+		"resources": [
+			"js/mui.min.js",
+			"images/sinaweibo.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"img/logo.png",
+			"images/vt.png",
+			"images/vs.png"
+		]
+	},
+	"pagers/find_search.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/a1i.png"
+		]
+	},
+	"pagers/wallet.html": {
+		"resources": [
+			"css/mui.min.css",
+			"images/a.9.png",
+			"css/device_fault.css",
+			"images/a3j.png",
+			"images/a2j.png",
+			"images/a2i.png",
+			"fonts/mui.ttf",
+			"js/mui.min.js"
+		]
+	},
+	"pagers/chat_show.html": {
+		"refer": [
+			"pagers/Fans_show.html"
+		]
+	},
+	"pagers/Fans_show.html": {
+		"resources": [
+			"images/uj.png",
+			"js/mui.pullToRefresh.js",
+			"js/app.js",
+			"images/tl.png",
+			"images/icom.jpg",
+			"js/mui.pullToRefresh.material.js",
+			"images/ti.png",
+			"images/ub.png",
+			"images/tj.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/vr.png",
+			"images/ud.png"
+		],
+		"refer": [
+			"pagers/im_chat.html"
+		]
+	},
+	"pagers/im_chat.html": {
+		"resources": [
+			"js/mui.imageViewer.js",
+			"css/app.css",
+			"css/mui.imageviewer.css",
+			"js/arttmpl.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		]
 	}
 }
